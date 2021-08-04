@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <StartupObject>viewObjectBuilder.Program</StartupObject>
+    <ApplicationIcon/>
+    <RootNamespace>viewObjectBuilder</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5"/>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.2.5"/>
+    <PackageReference Include="NSubstitute" Version="3.1.0"/>
+    <PackageReference Include="Shouldly" Version="3.0.0"/>
+    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.211"/>
+    <PackageReference Include="LibGit2Sharp" Version="0.25.2"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.2"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.2"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2"/>
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="2.0.0"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="publishViewsInSchema.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+</Project>

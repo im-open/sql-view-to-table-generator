@@ -1,0 +1,65 @@
+## npm stuff
+#################
+node_modules/
+npm-debug.log*
+
+## Visual Studio Code
+#################
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+
+## JetBrains tools
+#################
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+
+
+## Visual Studio .NET and .NET Core: based on https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+#################
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio 2017 auto generated files
+Generated\ Files/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+## Git conflict files
+#################
+*.orig
