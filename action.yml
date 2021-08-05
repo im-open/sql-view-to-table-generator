@@ -3,8 +3,8 @@ name: SQL View to Create Table File Generator
 description: Takes the views from the specified schema and creates .sql files with create table statements for them
 
 inputs:
-  schema-name:
-    description: The name of the schema of the views to generate create table files for.
+  schema-names:
+    description: A comma separated list of schemas that hold the views that are to have create table scripts created for them.
     required: true
   db-name:
     description: The name of the database to use.
@@ -47,15 +47,22 @@ runs:
     - name: Generate the create table files
       shell: pwsh
       run: |
-        .\.build\publishViewsInSchema.ps1 -SchemaName "${{ inputs.schema-name }}" `
-        -DbName "${{ inputs.db-name }}" `
-        -db-server "${{ inputs.db-server }}" `
-        -port "${{ inputs.db-port }}" `
-        -NugetFolder "${{ inputs.nuget-folder }}" `
-        -Publish:$${{ inputs.publish-packages }} `
-        -DefaultBranchName "${{ inputs.default-branch }}" `
-        -NugetRetrievalUrl "${{ inputs.nuget-retrieval-url }}" `
-        -NugetPublishUrl "${{ inputs.nuget-publish-url }}" `
-        -PackageFolder "${{ inputs.package-folder }}" `
-        -NugetApiKey "${{ inputs.nuget-api-key }}" `
-        -Verbose
+        $schemas = "${{ inputs.schema-names }}".Split(',');
+
+        foreach($schema in $schemas)
+        {
+          $schema = $schema.Trim();
+
+          ${{ github.action_path }}\.build\publishViewsInSchema.ps1 -SchemaName $schema `
+          -DbName "${{ inputs.db-name }}" `
+          -db-server "${{ inputs.db-server }}" `
+          -port "${{ inputs.db-port }}" `
+          -NugetFolder "${{ inputs.nuget-folder }}" `
+          -Publish:$${{ inputs.publish-packages }} `
+          -DefaultBranchName "${{ inputs.default-branch }}" `
+          -NugetRetrievalUrl "${{ inputs.nuget-retrieval-url }}" `
+          -NugetPublishUrl "${{ inputs.nuget-publish-url }}" `
+          -PackageFolder "${{ inputs.package-folder }}" `
+          -NugetApiKey "${{ inputs.nuget-api-key }}" `
+          -Verbose
+        }

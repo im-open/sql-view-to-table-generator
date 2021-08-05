@@ -8,7 +8,7 @@ The main use case for this Action is when you need to referene a view, but eithe
 ## Inputs
 | Parameter             | Is Required | Default    | Description           |
 | --------------------- | ----------- | ---------- | --------------------- |
-| `schema-name`         | true        | N/A        | The name of the schema of the views to generate create table files for. |
+| `schema-names`        | true        | N/A        | A comma separated list of schemas that hold the views that are to have create table scripts created for them. |
 | `db-name`             | true        | N/A        | The name of the database to use. |
 | `db-server`           | true        | localhost  | The name of the database server to use. |
 | `db-port`             | false       | 1433       | The name of the database server port to use. |
@@ -45,7 +45,7 @@ jobs:
       - name: Create Views From Tables
         uses: im-open/sql-view-to-table-generator@v1.0.0
         with:
-          schema-name: dbo
+          schema-names: "dbo,MySchema"
           db-name: LocalDb
           db-server: localhost
           nuget-retrieval-url: https://www.nuget.org/
@@ -80,7 +80,7 @@ jobs:
       - name: Create Views From Tables
         uses: im-open/sql-view-to-table-generator@v1.0.0
         with:
-          schema-name: dbo
+          schema-names: dbo
           db-name: LocalDb
           db-server: localhost
           nuget-retrieval-url: "https://nuget.pkg.github.com/my-org/index.json" # A GitHub packages url for my-org
