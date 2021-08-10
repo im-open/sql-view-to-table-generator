@@ -1,22 +1,68 @@
-name: 'Composite Run Steps Action Template'
+name: SQL View to Create Table File Generator
 
-description: 'Add description here'
+description: Takes the views from the specified schema and creates .sql files with create table statements for them
 
 inputs:
-  input-1:
-    description: 'Add a description here'
+  schema-names:
+    description: A comma separated list of schemas that hold the views that are to have create table scripts created for them.
     required: true
-
-outputs:
-  output-1:
-    description: 'Add description here'
-    value: '${{ steps.step_1.outputs.world }}'
+  db-name:
+    description: The name of the database to use.
+    required: true
+  db-server:
+    description: The name of the database server to use.
+    required: true
+    default: localhost
+  db-port:
+    description: The name of the database server port to use.
+    required: false
+    default: 1433
+  default-branch:
+    description: The name of the default branch of the running repo.
+    required: true
+    default: main
+  nuget-retrieval-url:
+    description: The url where the packages to compare against the generated files can be found.
+    required: true
+  publish-packages:
+    description: A flag determining whether or not to publish nuget packages with the create table files.
+    required: false
+    default: false
+  nuget-publish-url:
+    description: The url where the generated packages will be published. This should be set if the `publish-packages` flag is `true`, otherwise an error will occur.
+    required: false
+  nuget-api-key:
+    description: The API key for the `nuget-publish-url`. If that url is set, this should be too.
+    required: false
+  nuget-folder:
+    description: The name of the folder to put the nuget files that will be compared to the generated create table files. Defaults to './.build/.nuget' in this action's folder.
+    required: false
+  package-folder:
+    description: The name of the folder where the generated create table files will go. Defaults to './.build/.packages' in this action's folder.
+    required: false
 
 runs:
   using: 'composite'
   steps:
-    - name: Step 1
-      id: step_1
-      shell: bash
+    - name: Generate the create table files
+      shell: pwsh
       run: |
-        echo "::set-output name=hello::world"
+        $schemas = "${{ inputs.schema-names }}".Split(',');
+
+        foreach($schema in $schemas)
+        {
+          $schema = $schema.Trim();
+
+          ${{ github.action_path }}\.build\publishViewsInSchema.ps1 -SchemaName $schema `
+          -DbName "${{ inputs.db-name }}" `
+          -db-server "${{ inputs.db-server }}" `
+          -port "${{ inputs.db-port }}" `
+          -NugetFolder "${{ inputs.nuget-folder }}" `
+          -Publish:$${{ inputs.publish-packages }} `
+          -DefaultBranchName "${{ inputs.default-branch }}" `
+          -NugetRetrievalUrl "${{ inputs.nuget-retrieval-url }}" `
+          -NugetPublishUrl "${{ inputs.nuget-publish-url }}" `
+          -PackageFolder "${{ inputs.package-folder }}" `
+          -NugetApiKey "${{ inputs.nuget-api-key }}" `
+          -Verbose
+        }

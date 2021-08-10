@@ -1,0 +1,20 @@
+{
+  "name": "sql-view-to-table-generator",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "dotnet publish \"./src/view-object-builder/view-object-builder.csproj\" -c Release -o \"./.build\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build && git add .build/*"
+    }
+  },
+  "keywords": [],
+  "author": "wtw",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "^4.3.8"
+  }
+}

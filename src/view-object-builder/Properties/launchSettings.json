@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Build SQL": {
+      "commandName": "Project",
+      "commandLineArgs": "BuildSql -o c:\\temp\\view_to_object -n localhost -d LocalDb -s dbo -m main -v true"
+    },
+    "Build ORM": {
+      "commandName": "Project",
+      "commandLineArgs": "BuildOrm -o c:\\temp\\view_to_object -n localhost -d LocalDb -s dbo -v true"
+    },
+    "Compare Files": {
+      "commandName": "Project",
+      "commandLineArgs": "CompareFiles -f c:\\temp\\temp1.txt -f c:\\temp\\temp3.txt -v true"
+    }
+  }
+}

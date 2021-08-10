@@ -1,74 +1,95 @@
-# composite-run-steps-action-template
+# sql-view-to-table-generator
 
-This template can be used to quickly start a new custom composite-run-steps action repository.  Click the `Use this template` button at the top to get started.
+This action is a replacement for the [Sql-View-to-Table-Creation](https://github.com/im-open/Sql-View-to-Table-Creation) repo. It wraps the tool in a GitHub Action for use in Workflows.
 
-## TODOs
-- Readme
-  - [ ] Update the Inputs section with the correct action inputs
-  - [ ] Update the Outputs section with the correct action outputs
-  - [ ] Update the Example section with the correct usage   
-- action.yml
-  - [ ] Fill in the correct name, description, inputs and outputs and implement steps
-- CODEOWNERS
-  - [ ] Update as appropriate
-- Repository Settings
-  - [ ] On the *Options* tab check the box to *Automatically delete head branches*
-  - [ ] On the *Options* tab update the repository's visibility
-  - [ ] On the *Branches* tab add a branch protection rule
-    - [ ] Check *Require pull request reviews before merging*
-    - [ ] Check *Dismiss stale pull request approvals when new commits are pushed*
-    - [ ] Check *Require review from Code Owners*
-    - [ ] Check *Include Administrators*
-  - [ ] On the *Manage Access* tab add the appropriate groups
-- About Section (accessed on the main page of the repo, click the gear icon to edit)
-  - [ ] The repo should have a short description of what it is for
-  - [ ] Add one of the following topic tags:
-    | Topic Tag       | Usage                                    |
-    | --------------- | ---------------------------------------- |
-    | az              | For actions related to Azure             |
-    | code            | For actions related to building code     |
-    | certs           | For actions related to certificates      |
-    | db              | For actions related to databases         |
-    | git             | For actions related to Git               |
-    | iis             | For actions related to IIS               |
-    | microsoft-teams | For actions related to Microsoft Teams   |
-    | svc             | For actions related to Windows Services  |
-    | jira            | For actions related to Jira              |
-    | meta            | For actions related to running workflows |
-    | pagerduty       | For actions related to PagerDuty         |
-    | test            | For actions related to testing           |
-    | tf              | For actions related to Terraform         |
-  - [ ] Add any additional topics for an action if they apply    
+This GitHub Action will look at the views for a specified schema on a SQL Server instance and generate files for each with a `CREATE TABLE` statement. As such, a running SQL Server instance needs to be in place before this Action can be used (see the [Examples](#Examples)).
+
+The main use case for this Action is when you need to reference a view, but either can't or don't want to spin up a database with every dependency the view needs. This is particularly handy for local development and automated testing. You don't need to spin up an entire monolithic database just to run your tests. You can spin up something much more paired down and develop/test against that.
     
 
 ## Inputs
-| Parameter | Is Required | Description           |
-| --------- | ----------- | --------------------- |
-| `input-1` | true        | Description goes here |
-| `input-2` | false       | Description goes here |
+| Parameter             | Is Required | Default    | Description           |
+| --------------------- | ----------- | ---------- | --------------------- |
+| `schema-names`        | true        | N/A        | A comma separated list of schemas that hold the views that are to have create table scripts created for them. |
+| `db-name`             | true        | N/A        | The name of the database to use. |
+| `db-server`           | true        | localhost  | The name of the database server to use. |
+| `db-port`             | false       | 1433       | The name of the database server port to use. |
+| `default-branch`      | true        | main       | The name of the default branch of the running repo. |
+| `nuget-retrieval-url` | true        | N/A        | The url where the packages to compare against the generated files can be found. |
+| `publish-packages`    | false       | false      | A flag determining whether or not to publish nuget packages with the create table files. |
+| `nuget-publish-url`   | false       | N/A        | The url where the generated packages will be published. This should be set if the `publish-packages` flag is `true`, otherwise an error will occur. |
+| `nuget-api-key`       | false       | N/A        | The API key for the `nuget-publish-url`. If that url is set, this should be too. |
+| `nuget-folder`        | false       | N/A        | The name of the folder to put the nuget files that will be compared to the generated create table files. Defaults to `./.build/.nuget` in this action's folder. |
+| `package-folder`      | false       | N/A | The name of the folder where the generated create table files will go. Defaults to './.build/.packages' in this action's folder. |
 
-## Outputs
-| Output     | Description           |
-| ---------- | --------------------- |
-| `output-1` | Description goes here |
+## Examples
 
-## Example
-
+**Without publishing the views to a nuget repository**
 ```yml
-# TODO: Fill in the correct usage
 jobs:
   job1:
     runs-on: [self-hosted]
     steps:
       - uses: actions/checkout@v2
 
-      - name: Add the action here
-        uses: im-open/this-repo@v1.0.0
+      - name: Install Flyway
+        uses: im-open/setup-flyway@v1.0.0
         with:
-          input-1: 'abc'
-          input-2: '123
+          version: 7.2.0
+
+      - name: Build Database
+        uses: im-open/build-database-ci-action@v1.0.1
+        with:
+          db-server-name: localhost
+          db-name: LocalDB
+          drop-db-after-build: false
+
+      - name: Create Views From Tables
+        uses: im-open/sql-view-to-table-generator@v1.0.0
+        with:
+          schema-names: "dbo,MySchema"
+          db-name: LocalDb
+          db-server: localhost
+          nuget-retrieval-url: https://www.nuget.org/
 ```
 
+**Publishing the views to a nuget repository**
+```yml
+jobs:
+  job1:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Flyway
+        uses: im-open/setup-flyway@v1.0.0
+        with:
+          version: 7.2.0
+
+      - name: Build Database
+        uses: im-open/build-database-ci-action@v1.0.1
+        with:
+          db-server-name: localhost
+          db-name: LocalDB
+          drop-db-after-build: false
+
+      - name: Authenticate with GitHub Packages on Windows
+        uses: im-open/authenticate-with-gh-packages-for-nuget@v1.0.0
+        with:
+          github-token: ${{ secrets.MY_GH_PACKAGES_ACCESS_TOKEN }} # Token has read:packages scope and is authorized for each of the orgs
+          orgs: 'my-org'
+
+      - name: Create Views From Tables
+        uses: im-open/sql-view-to-table-generator@v1.0.0
+        with:
+          schema-names: dbo
+          db-name: LocalDb
+          db-server: localhost
+          nuget-retrieval-url: "https://nuget.pkg.github.com/my-org/index.json" # A GitHub packages url for my-org
+          publish-packages: true
+          nuget-publish-url: "https://github.com/my-org/my-repo" # The url to publish packages to
+          nuget-api-key: "${{ secrets.MY_GH_PACKAGES_ACCESS_TOKEN }}" # A token that has access to publish packages
+```
 
 ## Code of Conduct
 
