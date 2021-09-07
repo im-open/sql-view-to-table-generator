@@ -67,7 +67,7 @@ jobs:
           version: 7.2.0
 
       - name: Build Database
-        uses: im-open/build-database-ci-action@v1.0.1
+        uses: im-open/build-database-ci-action@v1.0.4
         with:
           db-server-name: localhost
           db-name: LocalDB
@@ -80,7 +80,7 @@ jobs:
           orgs: 'my-org'
 
       - name: Create Views From Tables
-        uses: im-open/sql-view-to-table-generator@v1.0.0
+        uses: im-open/sql-view-to-table-generator@v1.0.1
         with:
           schema-names: dbo
           db-name: LocalDb
