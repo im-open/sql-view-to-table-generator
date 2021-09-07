@@ -51,7 +51,7 @@ runs:
 
         if(!$inputSchemas) { exit 0 }
 
-        $schemas = "${{ inputs.schema-names }}".Split(',');
+        $schemas = $inputSchemas.Split(',');
         $executablePath = if($IsWindows) { "${{ github.action_path }}\.build-win" } else { "${{ github.action_path }}\.build-linux" }
 
         foreach($schema in $schemas)
