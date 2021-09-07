@@ -47,16 +47,21 @@ runs:
     - name: Generate the create table files
       shell: pwsh
       run: |
+        $inputSchemas = "${{ inputs.schema-names }}"
+
+        if(!$inputSchemas) { exit 0 }
+
         $schemas = "${{ inputs.schema-names }}".Split(',');
+        $executablePath = if($IsWindows) { "${{ github.action_path }}\.build-win" } else { "${{ github.action_path }}\.build-linux" }
 
         foreach($schema in $schemas)
         {
           $schema = $schema.Trim();
 
-          ${{ github.action_path }}\.build\publishViewsInSchema.ps1 -SchemaName $schema `
+          & $executablePath\publishViewsInSchema.ps1 -SchemaName $schema `
           -DbName "${{ inputs.db-name }}" `
-          -db-server "${{ inputs.db-server }}" `
-          -port "${{ inputs.db-port }}" `
+          -DbServer "${{ inputs.db-server }}" `
+          -Port "${{ inputs.db-port }}" `
           -NugetFolder "${{ inputs.nuget-folder }}" `
           -Publish:$${{ inputs.publish-packages }} `
           -DefaultBranchName "${{ inputs.default-branch }}" `
