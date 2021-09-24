@@ -1,7 +1,11 @@
-﻿using System;
+using System;
+using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using McMaster.Extensions.CommandLineUtils;
 
 namespace viewObjectBuilder.Configuration
@@ -63,7 +67,6 @@ namespace viewObjectBuilder.Configuration
         public bool IsTheSame(string filePath1, string filePath2)
         {
             var reader = new StreamReader(filePath1);
-
             var file1 = reader.ReadToEnd();
             reader.Close();
             reader.Dispose();
@@ -73,7 +76,31 @@ namespace viewObjectBuilder.Configuration
             reader.Close();
             reader.Dispose();
 
-            return !Extensions.StringLineDifference(file1, file2);
+            var diffResults = Extensions.StringLineDifference(file1, file2);
+
+            if (diffResults.HasDifferentLineCounts)
+            {
+                Console.WriteLine($"The files {filePath1} and {filePath2} have different line counts.");
+            }
+
+            if (diffResults.HasLineDifferences)
+            {
+                Console.WriteLine($"There were differences in some of the lines of {filePath1} and {filePath2}. Listing the differences.\r\n");
+
+                diffResults.LineDifferences.ToList().ForEach(difference =>
+                {
+                    Console.WriteLine($"\r\nDifference at index {difference.Key}. The lines are: ");
+                    Console.WriteLine($"File 1: {difference.Value.FileOneLine}");
+                    Console.WriteLine($"File 2: {difference.Value.FileTwoLine}");
+                });
+            }
+
+            return !diffResults.HasLineDifferences && !diffResults.HasDifferentLineCounts;
+        }
+
+        private static string ToLiteral(string input)
+        {
+            return $@"{input}";
         }
     }
 }

@@ -9,7 +9,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build && git add .build/*"
+      "pre-commit": "npm run build && git add .build-win/* && git add .build-linux/*"
     }
   },
   "keywords": [],
