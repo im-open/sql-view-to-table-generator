@@ -3,6 +3,7 @@ using viewObjectBuilder.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace viewObjectBuilder.Configuration
 {
@@ -38,7 +39,7 @@ namespace viewObjectBuilder.Configuration
                     var packageId = $"{Schema}.{view.Name}.{view.Version ?? "1.0"}{branchName}";
 
                     File.WriteAllText(Path.Combine(basePath, $"{packageId}.sql"),
-                        DbSqlTools.BuildSql(Schema, view.Name, view.Version, view.SqlText));
+                        DbSqlTools.BuildSql(Schema, view.Name, view.Version, view.SqlText), Encoding.UTF8);
                 });
 
                 BuildFiles(Schema, folders, writeView);

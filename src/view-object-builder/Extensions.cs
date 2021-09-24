@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,31 +19,58 @@ namespace viewObjectBuilder
         }
 
         public static (int index, object value)[] LineIndex(this string text)
-            => text.Split(Environment.NewLine).Index();
+            => text.Split(new [] { "\r\n", "\n" }, StringSplitOptions.None).Index();
 
         public static (int index, object value)[] Index(this IEnumerable<object> values)
              => values
                 .Select((v, i) => (index: i, value: v))
                 .ToArray();
 
-        public static bool StringLineDifference(string previousString, string newString)
+        public static FileDifferences StringLineDifference(string previousString, string newString)
         {
             var previousSplit = previousString.LineIndex();
             var newSplit = newString.LineIndex();
 
-            var hasDifferentLines = previousSplit
+            var lineDifferences = previousSplit
                 .Join(newSplit,
                     p => p.index,
                     n => n.index,
                     (p, n) => new
                     {
+                        index = p.index,
                         p = p.value,
                         n = n.value,
                     })
-                .Any(f => !f.p.Equals(f.n));
+                .Where(f => !f.p.Equals(f.n))
+                .ToDictionary(line => line.index, line => new LineDifferences(line.p.ToString(), line.n.ToString()));
 
             var hasDifferentLineCounts = previousSplit.Length != newSplit.Length;
-            return hasDifferentLines || hasDifferentLineCounts;
+
+            return new FileDifferences
+            {
+                HasDifferentLineCounts = hasDifferentLineCounts,
+                LineDifferences = lineDifferences
+            };
+        }
+
+        public class FileDifferences
+        {
+            public bool HasDifferentLineCounts { get; set; }
+            public IDictionary<int, LineDifferences> LineDifferences { get; set; }
+
+            public bool HasLineDifferences => this.LineDifferences?.Any() == true || this.HasDifferentLineCounts;
+        }
+
+        public class LineDifferences
+        {
+            public LineDifferences(string fileOneLine, string fileTwoLine)
+            {
+                FileOneLine = fileOneLine;
+                FileTwoLine = fileTwoLine;
+            }
+
+            public string FileOneLine { get; set; }
+            public string FileTwoLine { get; set; }
         }
     }
 }

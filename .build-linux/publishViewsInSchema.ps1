@@ -14,6 +14,7 @@ Param(
 )
 
 $NugetFolder = if (!$NugetFolder) { "$PSScriptRoot\.nuget" } else { $NugetFolder }
+$PackageFolder = if (!$PackageFolder) { "$PSScriptRoot\.packages" } else { $PackageFolder }
 
 $ErrorActionPreference = "Stop"
 $originalLocation = Get-Location
@@ -64,6 +65,8 @@ $dbManagerArgList = @(
     "-p", $Port,
     "-v", $Verbose
 )
+
+Write-Host "Running: dotnet $dbManagerPath $dbManagerArgList"
 & dotnet $dbManagerPath $dbManagerArgList
 
 if ($LASTEXITCODE -ne $sqlCreationPassed) {
