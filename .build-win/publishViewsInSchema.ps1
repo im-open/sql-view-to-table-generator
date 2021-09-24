@@ -65,7 +65,8 @@ $dbManagerArgList = @(
     "-p", $Port,
     "-v", $Verbose
 )
-Write-Host "dotnet $dbManagerPath $dbManagerArgList"
+
+Write-Host "Running: dotnet $dbManagerPath $dbManagerArgList"
 & dotnet $dbManagerPath $dbManagerArgList
 
 if ($LASTEXITCODE -ne $sqlCreationPassed) {
