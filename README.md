@@ -89,7 +89,7 @@ jobs:
           orgs: 'my-org'
 
       - name: Create Views From Tables
-        uses: im-open/sql-view-to-table-generator@v1.0.2
+        uses: im-open/sql-view-to-table-generator@v1.0.3
         with:
           schema-names: dbo
           db-name: LocalDb
