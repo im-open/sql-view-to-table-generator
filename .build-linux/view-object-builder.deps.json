@@ -2818,7 +2818,7 @@
     "System.Runtime.Serialization.Formatters/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Z1lkep1Xe3WdCmsMbhI9r4miiaLO6MOSJOgXzjDT8bzW7bFD/tZOaG4DlL10u73guPvcwYUBwtbv98lgM5kfdg==",
+      "sha512": "sha512-KT591AkTNFOTbhZlaeMVvfax3RqhH1EJlcwF50Wm7sfnBLuHiOeZRRKrr1ns3NESkM20KPZ5Ol/ueMq5vg4QoQ==",
       "path": "system.runtime.serialization.formatters/4.3.0",
       "hashPath": "system.runtime.serialization.formatters.4.3.0.nupkg.sha512"
     },
@@ -2902,7 +2902,7 @@
     "System.Security.Principal.Windows/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/jUFAd7Ntmg52V4NY3WzQZjmzBJIrCMEKa2CgoUj9YCy0uty2DZwdciqGrRaqB1iJrcm7kyex7Iu1K6UD+c5eg==",
+      "sha512": "sha512-U77HfRXlZlOeIXd//Yoj6Jnk8AXlbeisf1oq1os+hxOGVnuG+lGSfGqTwTZBoORFF6j/0q7HXIl8cqwQ9aUGqQ==",
       "path": "system.security.principal.windows/4.5.0",
       "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
     },
@@ -3115,6 +3115,39 @@
       "base"
     ],
     "alpine.3.15-x64": [
+      "alpine.3.15",
+      "alpine.3.14-x64",
+      "alpine.3.14",
+      "alpine.3.13-x64",
+      "alpine.3.13",
+      "alpine.3.12-x64",
+      "alpine.3.12",
+      "alpine.3.11-x64",
+      "alpine.3.11",
+      "alpine.3.10-x64",
+      "alpine.3.10",
+      "alpine.3.9-x64",
+      "alpine.3.9",
+      "alpine.3.8-x64",
+      "alpine.3.8",
+      "alpine.3.7-x64",
+      "alpine.3.7",
+      "alpine.3.6-x64",
+      "alpine.3.6",
+      "alpine-x64",
+      "alpine",
+      "linux-musl-x64",
+      "linux-musl",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "alpine.3.16-x64": [
+      "alpine.3.16",
+      "alpine.3.15-x64",
       "alpine.3.15",
       "alpine.3.14-x64",
       "alpine.3.14",
@@ -3730,6 +3763,17 @@
     ],
     "fedora.36-x64": [
       "fedora.36",
+      "fedora-x64",
+      "fedora",
+      "linux-x64",
+      "linux",
+      "unix-x64",
+      "unix",
+      "any",
+      "base"
+    ],
+    "fedora.37-x64": [
+      "fedora.37",
       "fedora-x64",
       "fedora",
       "linux-x64",
