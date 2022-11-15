@@ -56,7 +56,7 @@ jobs:
           drop-db-after-build: false
 
       - name: Create Views From Tables
-        uses: im-open/sql-view-to-table-generator@v1.0.5
+        uses: im-open/sql-view-to-table-generator@v1.0.6
         with:
           schema-names: "dbo,MySchema"
           db-name: LocalDb
@@ -92,7 +92,7 @@ jobs:
           orgs: 'my-org'
 
       - name: Create Views From Tables
-        uses: im-open/sql-view-to-table-generator@v1.0.5
+        uses: im-open/sql-view-to-table-generator@v1.0.6
         with:
           schema-names: dbo
           db-name: LocalDb

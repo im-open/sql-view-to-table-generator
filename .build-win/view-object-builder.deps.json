@@ -1009,170 +1009,170 @@
         },
         "native": {
           "runtimes/win-x64/native/Microsoft.DiaSymReader.Native.amd64.dll": {
-            "fileVersion": "14.0.24210.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/System.Private.CoreLib.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "4.6.26614.1"
           },
           "runtimes/win-x64/native/api-ms-win-core-console-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-datetime-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-debug-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-errorhandling-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-file-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-file-l1-2-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-file-l2-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-handle-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-heap-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-interlocked-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-libraryloader-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-localization-l1-2-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-memory-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-namedpipe-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-processenvironment-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-processthreads-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-processthreads-l1-1-1.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-profile-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-rtlsupport-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-string-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-synch-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-synch-l1-2-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-sysinfo-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-timezone-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-core-util-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-conio-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-convert-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-environment-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-filesystem-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-heap-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-locale-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-math-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-multibyte-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-private-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-process-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-runtime-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-stdio-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-string-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-time-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/api-ms-win-crt-utility-l1-1-0.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/clrcompression.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/clretwrc.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/clrjit.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/coreclr.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/dbgshim.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/mscordaccore.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/mscordaccore_amd64_amd64_4.6.26614.01.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/mscordbi.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/mscorrc.debug.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/mscorrc.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/sos.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/sos_amd64_amd64_4.6.26614.01.dll": {
-            "fileVersion": "4.6.26614.1"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/ucrtbase.dll": {
-            "fileVersion": "10.0.14393.33"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1189,7 +1189,7 @@
         },
         "native": {
           "runtimes/win-x64/native/hostpolicy.dll": {
-            "fileVersion": "2.0.26615.1"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1199,14 +1199,14 @@
         },
         "native": {
           "runtimes/win-x64/native/hostfxr.dll": {
-            "fileVersion": "2.0.26615.1"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
       "runtime.win-x64.runtime.native.System.Data.SqlClient.sni/4.4.0": {
         "native": {
           "runtimes/win-x64/native/sni.dll": {
-            "fileVersion": "4.6.25512.1"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1695,7 +1695,7 @@
         "runtime": {
           "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {
             "assemblyVersion": "4.0.3.0",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.0.0.0"
           }
         }
       },
