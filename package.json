@@ -7,16 +7,7 @@
     "build-linux": "dotnet publish \"./src/view-object-builder/view-object-builder.csproj\" -c Release -o \"./.build-linux\" --self-contained -r linux-x64",
     "build": "npm run build-win && npm run build-linux"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build && git add .build-win/* && git add .build-linux/*"
-    }
-  },
   "keywords": [],
   "author": "wtw",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-    "husky": "^4.3.8"
-  }
+  "license": "ISC"
 }
