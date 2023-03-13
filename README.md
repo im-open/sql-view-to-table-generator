@@ -44,19 +44,20 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Flyway
-        uses: im-open/setup-flyway@v1.1.0
+        uses: im-open/setup-flyway@v1
         with:
           version: 7.2.0
 
       - name: Build Database
-        uses: im-open/build-database-ci-action@v3.0.3
+        uses: im-open/build-database-ci-action@v3
         with:
           db-server-name: localhost
           db-name: LocalDB
           drop-db-after-build: false
 
       - name: Create Views From Tables
-        uses: im-open/sql-view-to-table-generator@v1.0.6
+        # You may also reference the major or major.minor version
+        uses: im-open/sql-view-to-table-generator@v1.0.7
         with:
           schema-names: "dbo,MySchema"
           db-name: LocalDb
@@ -74,25 +75,26 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Flyway
-        uses: im-open/setup-flyway@v1.1.0
+        uses: im-open/setup-flyway@v1
         with:
           version: 7.2.0
 
       - name: Build Database
-        uses: im-open/build-database-ci-action@v3.0.3
+        uses: im-open/build-database-ci-action@v3
         with:
           db-server-name: localhost
           db-name: LocalDB
           drop-db-after-build: false
 
       - name: Authenticate with GitHub Packages on Windows
-        uses: im-open/authenticate-with-gh-package-registries@v1.0.5
+        uses: im-open/authenticate-with-gh-package-registries@v1
         with:
           github-token: ${{ secrets.MY_GH_PACKAGES_ACCESS_TOKEN }} # Token has read:packages scope and is authorized for each of the orgs
           orgs: 'my-org'
 
       - name: Create Views From Tables
-        uses: im-open/sql-view-to-table-generator@v1.0.6
+        # You may also reference the major or major.minor version
+        uses: im-open/sql-view-to-table-generator@v1.0.7
         with:
           schema-names: dbo
           db-name: LocalDb
