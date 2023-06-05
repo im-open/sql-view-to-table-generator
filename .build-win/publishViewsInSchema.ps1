@@ -48,7 +48,7 @@ $packageVersion = "packageVersion"
 $extension = "extensions"
 $sqlFileRegex = "(?<$package>(?<$packageNameVer>(?<$packageName>\w+.\w+).(?<$packageVersion>\d.\d)))(?<$extension>.sql)"
 
-if(![System.IO.File]::Exists($targetNugetExe)) {
+if (![System.IO.File]::Exists($targetNugetExe)) {
     Write-Host "Downloading nuget.exe"
     New-Item -ItemType Directory -Path $NugetFolder
     Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
@@ -84,7 +84,7 @@ ForEach-Object {
 
     & $targetNugetExe install $packageId -Source $NugetRetrievalUrl -OutputDirectory $NugetFolder -ExcludeVersion -Version $version
 
-    if($LASTEXITCODE -eq $nuGetInstallFinished) {
+    if ($LASTEXITCODE -eq $nuGetInstallFinished) {
         $dbManagerArgList = @(
             "CompareFiles",
             "-f", $_.FullName,
@@ -96,12 +96,10 @@ ForEach-Object {
 
         # Delete if no change
         # Throw if scripts differ
-        if ($LASTEXITCODE -eq $equivalentScripts)
-        {
+        if ($LASTEXITCODE -eq $equivalentScripts) {
             Remove-Item -path $_.FullName
         }
-        elseif ($LASTEXITCODE -eq $differentScripts)
-        {
+        elseif ($LASTEXITCODE -eq $differentScripts) {
             Set-Location -Path $originalLocation
             throw "Versions of changed scripts have not been updated"
         }
@@ -132,8 +130,9 @@ ForEach-Object {
     $nuspec = '<?xml version="1.0"?><package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd"><metadata>'
     $nuspec += "<id>$packageId</id>"
     $nuspec += "<version>$version$metadata</version>"
-    $nuspec += "<authors>$machineName</authors>"
+    $nuspec += "<authors>$packageId</authors>"
     $nuspec += "<description>Table version of the $packageId view.</description>"
+    $nuspec += "<repository url=`"git://github.com/im-practices/database.git`"></repository>"
     $nuspec += "</metadata>"
     $nuspec += "<files><file src=`"$directory\$unversionedName`" target=`"`" /></files>"
     $nuspec += "</package>"
@@ -142,19 +141,30 @@ ForEach-Object {
     & $targetNugetExe pack $nuspecFile -OutputDirectory $directory
     Rename-Item -Path "$directory\$nameVer.0$metadata.nupkg" -NewName "$fullPackageName.nupkg"
 
-    if($LASTEXITCODE -eq 0) {
+    if ($LASTEXITCODE -eq 0) {
         $packagesCreated++
     }
 
     # Publish script
-    if ($Publish)
-    {
+    if ($Publish) {
         Write-Host "Publishing $fullPackageName package."
         $nupkgPath = "$directory\$fullPackageName.nupkg"
-        $source = "$NugetPublishUrl/$SchemaName"
+        $source = "$NugetPublishUrl"
 
+        # If we're not publishing to GitHub Packages, append the $SchemaName
+        if (!$NugetPublishUrl.Contains("nuget.pkg.github.com")) {
+            $source += "/$SchemaName"
+        }
+
+        # if (Get-Command "dotnet" -ErrorAction SilentlyContinue) {
+        #     & dotnet nuget push $nupkgPath --source $source --api-key $NugetApiKey
+        # }
+        # else {
+        Write-Host "The publish url is: $source"
         & $targetNugetExe push $nupkgPath -Source $source -ApiKey $NugetApiKey
-        if ($LASTEXITCODE -eq 0){
+        # }
+        
+        if ($LASTEXITCODE -eq 0) {
             $packagesPublished++
         }
     }
