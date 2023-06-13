@@ -10,7 +10,8 @@ Param(
     [string]$NugetRetrievalUrl,
     [string]$NugetPublishUrl,
     [string]$PackageFolder = "$PSScriptRoot\.packages",
-    [string]$NugetApiKey
+    [string]$NugetApiKey,
+    [string]$RepositoryUrl
 )
 
 $NugetFolder = if (!$NugetFolder) { "$PSScriptRoot\.nuget" } else { $NugetFolder }
@@ -132,7 +133,7 @@ ForEach-Object {
     $nuspec += "<version>$version$metadata</version>"
     $nuspec += "<authors>$packageId</authors>"
     $nuspec += "<description>Table version of the $packageId view.</description>"
-    $nuspec += "<repository url=`"git://github.com/im-practices/database.git`"></repository>"
+    $nuspec += "<repository url=`"$RepositoryUrl`"></repository>"
     $nuspec += "</metadata>"
     $nuspec += "<files><file src=`"$directory\$unversionedName`" target=`"`" /></files>"
     $nuspec += "</package>"
@@ -156,13 +157,7 @@ ForEach-Object {
             $source += "/$SchemaName"
         }
 
-        # if (Get-Command "dotnet" -ErrorAction SilentlyContinue) {
-        #     & dotnet nuget push $nupkgPath --source $source --api-key $NugetApiKey
-        # }
-        # else {
-        Write-Host "The publish url is: $source"
         & $targetNugetExe push $nupkgPath -Source $source -ApiKey $NugetApiKey
-        # }
         
         if ($LASTEXITCODE -eq 0) {
             $packagesPublished++
