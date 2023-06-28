@@ -8,13 +8,15 @@ The main use case for this Action is when you need to reference a view, but eith
 
 ## Index
 
-- [Inputs](#inputs)
-- [Examples](#examples)
-- [Contributing](#contributing)
-  - [Recompiling](#recompiling-manually)
-  - [Incrementing the Version](#incrementing-the-version)
-- [Code of Conduct](#code-of-conduct)
-- [License](#license)
+- [sql-view-to-table-generator](#sql-view-to-table-generator)
+  - [Index](#index)
+  - [Inputs](#inputs)
+  - [Examples](#examples)
+  - [Contributing](#contributing)
+    - [Recompiling Manually](#recompiling-manually)
+    - [Incrementing the Version](#incrementing-the-version)
+  - [Code of Conduct](#code-of-conduct)
+  - [License](#license)
 
 ## Inputs
 
@@ -31,6 +33,7 @@ The main use case for this Action is when you need to reference a view, but eith
 | `nuget-api-key`       | false       | N/A       | The API key for the `nuget-publish-url`. If that url is set, this should be too.                                                                                |
 | `nuget-folder`        | false       | N/A       | The name of the folder to put the nuget files that will be compared to the generated create table files. Defaults to `./.build/.nuget` in this action's folder. |
 | `package-folder`      | false       | N/A       | The name of the folder where the generated create table files will go. Defaults to './.build/.packages' in this action's folder.                                |
+| `repository-url`      | false       | N/A       | Use when publishing to GitHub Packages. The url to the repository which should house the published packages.                                                    |
 
 ## Examples
 
@@ -57,7 +60,7 @@ jobs:
 
       - name: Create Views From Tables
         # You may also reference the major or major.minor version
-        uses: im-open/sql-view-to-table-generator@v1.0.7
+        uses: im-open/sql-view-to-table-generator@v1.1.0
         with:
           schema-names: "dbo,MySchema"
           db-name: LocalDb
@@ -94,7 +97,7 @@ jobs:
 
       - name: Create Views From Tables
         # You may also reference the major or major.minor version
-        uses: im-open/sql-view-to-table-generator@v1.0.7
+        uses: im-open/sql-view-to-table-generator@v1.1.0
         with:
           schema-names: dbo
           db-name: LocalDb
@@ -103,6 +106,7 @@ jobs:
           publish-packages: true
           nuget-publish-url: "https://github.com/my-org/my-repo" # The url to publish packages to
           nuget-api-key: "${{ secrets.MY_GH_PACKAGES_ACCESS_TOKEN }}" # A token that has access to publish packages
+          repository-url: "git://github.com/my-org/my-repo.git" # The URL to the repository.
 ```
 
 ## Contributing
@@ -143,13 +147,13 @@ its dependencies into a single file located in the `dist` folder.
 Both the build and PR merge workflows will use the strategies below to determine what the next version will be.  If the build workflow was not able to automatically update the README.md action examples with the next version, the README.md should be updated manually as part of the PR using that calculated version.
 
 This action uses [git-version-lite] to examine commit messages to determine whether to perform a major, minor or patch increment on merge. The following table provides the fragment that should be included in a commit message to active different increment strategies.
-| Increment Type | Commit Message Fragment |
+| Increment Type | Commit Message Fragment                     |
 | -------------- | ------------------------------------------- |
-| major | +semver:breaking |
-| major | +semver:major |
-| minor | +semver:feature |
-| minor | +semver:minor |
-| patch | _default increment type, no comment needed_ |
+| major          | +semver:breaking                            |
+| major          | +semver:major                               |
+| minor          | +semver:feature                             |
+| minor          | +semver:minor                               |
+| patch          | _default increment type, no comment needed_ |
 
 ## Code of Conduct
 
