@@ -23,10 +23,10 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Setup Node.js 16
+      - name: Setup Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       # If this step results in changes, they will be committed in the last step
       - name: Recompile and Format action

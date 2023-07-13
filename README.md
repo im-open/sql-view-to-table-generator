@@ -60,7 +60,7 @@ jobs:
 
       - name: Create Views From Tables
         # You may also reference the major or major.minor version
-        uses: im-open/sql-view-to-table-generator@v1.1.0
+        uses: im-open/sql-view-to-table-generator@v1.1.1
         with:
           schema-names: "dbo,MySchema"
           db-name: LocalDb
@@ -97,7 +97,7 @@ jobs:
 
       - name: Create Views From Tables
         # You may also reference the major or major.minor version
-        uses: im-open/sql-view-to-table-generator@v1.1.0
+        uses: im-open/sql-view-to-table-generator@v1.1.1
         with:
           schema-names: dbo
           db-name: LocalDb
