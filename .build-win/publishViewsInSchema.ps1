@@ -27,7 +27,9 @@ $equivalentScripts = 0
 $differentScripts = 1
 
 # Parse the current branch information
-$currentBranch = git branch --show-current
+# $currentBranch = git branch --show-current
+$currentBranch = git rev-parse --abbrev-ref HEAD
+$currentBranch = $currentBranch.Trim()
 $branchName = $currentBranch.replace("_", "-").replace("/", "-") # "_" and "/" are illegal characters for nuget versions and metadata
 $shortSha = git rev-parse --short HEAD
 $metadata = ""
