@@ -47,7 +47,7 @@ $packageNameVer = "packageNameVer"
 $packageName = "packageName"
 $packageVersion = "packageVersion"
 $extension = "extensions"
-$sqlFileRegex = "(?<$package>(?<$packageNameVer>(?<$packageName>\w+.\w+).(?<$packageVersion>\d.\d)))(?<$extension>.sql)"
+$sqlFileRegex = "(?<$package>(?<$packageNameVer>(?<$packageName>\w+\.\w+)\.(?<$packageVersion>\d\.\d+)))(?<$extension>\.sql)"
 
 if (![System.IO.File]::Exists($targetNugetExe)) {
     Write-Host "Downloading nuget.exe"
